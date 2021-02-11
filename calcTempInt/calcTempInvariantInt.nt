@@ -1,0 +1,50 @@
+include "NewtonBaseSignals.nt"
+voltage : signal =
+{
+	name		= "Volt" English;
+	symbol		= V;
+	derivation	= power / current;
+}
+VoltageSquaredDimension : signal =
+{
+	derivation	= voltage**2;
+}
+temperaturePerVoltageSquaredDimension : signal =
+{
+	derivation	= temperature/voltage**2;
+}
+unitless : signal =
+{
+	name		= "none" English;
+	symbol		= x;
+	derivation	= dimensionless;
+}
+calcTempInvariant: invariant(
+				temp_adc		: voltage,
+				var1			: voltage,
+				var2			: VoltageSquaredDimension,
+				var3			: VoltageSquaredDimension,
+				calib_par_t1		: voltage,
+				calib_par_t2		: voltage,
+				calib_par_t3		: unitless,
+				calib_t_fine		: VoltageSquaredDimension,
+				unitHavingConstant1	: temperaturePerVoltageSquaredDimension,
+				calc_temp		: temperature
+			) =
+{
+	var1		~ temp_adc - calib_par_t1,
+	var2		~ var1 * calib_par_t2,
+	var3		~ var1 * var1,
+	var3		~ var3 * calib_par_t3,
+	calib_t_fine	~ var2 + var3,
+    #
+	#	This is the original expression implied by the Bosch code:
+	#
+	# calc_temp	~ (calib_t_fine + 128);
+	#
+	#	This is the required expression to make it dimensionally-consistent
+	#	(we can ignore the additional implicit constant needed to make '128'
+	#	into a temperature)
+	#
+	calc_temp	~ calib_t_fine * unitHavingConstant1
+}
