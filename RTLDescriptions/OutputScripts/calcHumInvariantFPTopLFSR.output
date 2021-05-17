@@ -1,0 +1,86 @@
+=== calcHumInvariantTopLFSR ===
+   Number of wires:               5388
+   Number of wire bits:          19329
+   Number of public wires:         500
+   Number of public wire bits:   10435
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              12192
+     SB_CARRY                     2453
+     SB_DFF                         65
+     SB_DFFE                      1490
+     SB_DFFESR                    1580
+     SB_DFFESS                      23
+     SB_DFFSR                      861
+     SB_DFFSS                       61
+     SB_HFOSC                        1
+     SB_LUT4                      5658
+3.45. Executing CHECK pass (checking for obvious problems).
+checking module calcHumInvariantTopLFSR..
+found and reported 0 problems.
+3.46. Executing BLIF backend.
+4. Executing JSON backend.
+Warnings: 3 unique messages, 4 total
+End of script. Logfile hash: 322ba1e89c
+CPU: user 31.94s system 0.17s, MEM: 280.79 MB total, 264.73 MB resident
+Yosys 0.9 (git sha1 1979e0b)
+Time spent: 25% 21x opt_expr (8 sec), 21% 17x opt_merge (6 sec), ...
+nextpnr-ice40 --up5k --package uwg30 --json calcHumInvariantTopLFSR.json --ignore-loops --pcf calcHumInvariantTopLFSR.pcf --asc calcHumInvariantTopLFSR.asc
+Info: constrained 'pi_0_calcSig' to bel 'X5/Y31/io0'
+Info: constrained 'pi_1_calcSig' to bel 'X19/Y0/io1'
+Info: constrained 'pi_2_calcSig' to bel 'X4/Y31/io0'
+Info: constrained 'pi_3_calcSig' to bel 'X5/Y0/io0'
+Info: constrained 'pi_4_calcSig' to bel 'X6/Y0/io0'
+Info: constrained 'pi_5_calcSig' to bel 'X6/Y0/io1'
+Info: constrained 'pi_6_calcSig' to bel 'X9/Y0/io1'
+Info: constrained 'pi_7_calcSig' to bel 'X12/Y0/io0'
+Info: constrained 'pi_8_calcSig' to bel 'X19/Y0/io0'
+Info: constrained 'pi_9_calcSig' to bel 'X19/Y31/io1'
+Info: constrained 'pi_10_calcSig' to bel 'X19/Y31/io0'
+Info: constrained 'pi_11_calcSig' to bel 'X12/Y31/io0'
+Info: constrained 'pi_12_calcSig' to bel 'X13/Y0/io0'
+Info: Packing constants..
+Info: Packing IOs..
+Info: Packing LUT-FFs..
+Info:     4167 LCs used as LUT4 only
+Info:     1491 LCs used as LUT4 and DFF
+Info: Packing non-LUT FFs..
+Info:     2589 LCs used as DFF only
+Info: Packing carries..
+Info:      854 LCs used as CARRY only
+Info: Packing RAMs..
+Info: Placing PLLs..
+Info: Packing special functions..
+Info:   constrained ICESTORM_HFOSC 'OSCInst0_OSC' to X0/Y31/hfosc_1
+Info:     Derived frequency constraint of 12.0 MHz for net clk12
+Info: Packing PLLs..
+Info: Promoting globals..
+Info: promoting $abc$165165$auto$dff2dffe.cc:158:make_patterns_logic$120738 [reset] (fanout 155)
+Info: promoting $abc$165165$auto$dff2dffe.cc:158:make_patterns_logic$139429 [reset] (fanout 155)
+Info: promoting $abc$165165$auto$dff2dffe.cc:158:make_patterns_logic$148556 [reset] (fanout 155)
+Info: promoting $abc$165165$auto$dff2dffe.cc:175:make_patterns_logic$127710 [cen] (fanout 416)
+Info: promoting $abc$165165$auto$dff2dffe.cc:158:make_patterns_logic$117560 [cen] (fanout 140)
+Info: promoting $abc$165165$auto$dff2dffe.cc:158:make_patterns_logic$124198 [cen] (fanout 140)
+Info: promoting $abc$165165$auto$dff2dffe.cc:158:make_patterns_logic$135814 [cen] (fanout 140)
+Info: Constraining chains...
+Info:       41 LCs used to legalise carry chains.
+Info: Checksum: 0x88bb49ca
+Info: Annotating ports with timing budgets for target frequency 12.00 MHz
+Info: Checksum: 0x8bba60f6
+Info: Device utilisation:
+Info: 	         ICESTORM_LC:  9144/ 5280   173%
+Info: 	        ICESTORM_RAM:     0/   30     0%
+Info: 	               SB_IO:    13/   96    13%
+Info: 	               SB_GB:     8/    8   100%
+Info: 	        ICESTORM_PLL:     0/    1     0%
+Info: 	         SB_WARMBOOT:     0/    1     0%
+Info: 	        ICESTORM_DSP:     0/    8     0%
+Info: 	      ICESTORM_HFOSC:     1/    1   100%
+Info: 	      ICESTORM_LFOSC:     0/    1     0%
+Info: 	              SB_I2C:     0/    2     0%
+Info: 	              SB_SPI:     0/    2     0%
+Info: 	              IO_I3C:     0/    2     0%
+Info: 	         SB_LEDDA_IP:     0/    1     0%
+Info: 	         SB_RGBA_DRV:     0/    1     0%
+Info: 	      ICESTORM_SPRAM:     0/    4     0%
