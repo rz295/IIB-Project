@@ -1,0 +1,25 @@
+include "NewtonBaseSignals.nt"
+voltage : signal =
+{
+	name		= "Volt" English;
+	symbol		= V;
+	derivation	= power / current;
+}
+temperaturePerVoltageDimension : signal =
+{
+	derivation	= temperature/voltage;
+}
+temperaturePerVoltageSquaredDimension : signal =
+{
+	derivation	= temperature/(voltage**2);
+}
+calcTempInvariant: invariant(
+				temp_adc : voltage,
+				calib_par_t1 : voltage,
+				calib_par_t2 : temperaturePerVoltageDimension,
+				calib_par_t3 : temperaturePerVoltageSquaredDimension,
+				calc_temp : temperature
+			) =
+{
+
+}
