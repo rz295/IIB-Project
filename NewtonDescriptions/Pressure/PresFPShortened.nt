@@ -1,0 +1,46 @@
+include "NewtonBaseSignals.nt"
+voltage : signal =
+{
+	name = "Volt" English;
+	symbol = V;
+	derivation = power / current;
+}
+perKelvinDimension : signal =
+{
+	derivation = temperature**(-1);
+}
+pascalPerVoltDimension : signal =
+{
+	derivation = pressure / power * current;
+}
+perPascalSquaredDimension : signal =
+{
+	derivation = pressure**(-2);
+}
+unitless : signal =
+{
+	name		= "none" English;
+	symbol		= x;
+	derivation	= dimensionless;
+}
+calcPresInvariant: invariant(
+   pres_adc : voltage,
+   calib_t_fine : temperature,	# where calc_temp = calib_t_fine / 5120.0
+   calib_par_p1 : unitless, 
+   calib_par_p2 : unitless, 
+   calib_par_p3 : unitless, 
+   calib_par_p4 : pressure, 
+   calib_par_p5 : pressure, 
+   calib_par_p6 : pressure, 
+   calib_par_p7 : pressure, 
+   calib_par_p8 : unitless,
+   calib_par_p9 : perPascalSquaredDimension, 
+   calib_par_p10 : perPascalSquaredDimension,  
+   unitHavingConstant1 : perKelvinDimension, 
+   unitHavingConstant2 : pascalPerVoltDimension, 
+   unitHavingConstant3 : pressure,
+   calc_pres : pressure
+				) =
+{
+     
+}

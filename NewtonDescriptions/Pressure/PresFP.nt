@@ -1,0 +1,85 @@
+include "NewtonBaseSignals.nt"
+voltage : signal =
+{
+	name = "Volt" English;
+	symbol = V;
+	derivation = power / current;
+}
+perKelvinDimension : signal =
+{
+	derivation = temperature**(-1);
+}
+pascalPerVoltDimension : signal =
+{
+	derivation = pressure / power * current;
+}
+perPascalSquaredDimension : signal =
+{
+	derivation = pressure**(-2);
+}
+unitless : signal =
+{
+	name		= "none" English;
+	symbol		= x;
+	derivation	= dimensionless;
+}
+calcPresInvariant: invariant(
+   pres_adc : voltage,
+   calib_t_fine : temperature,	# where calc_temp = calib_t_fine / 5120.0
+   var1 : unitless,
+   var2 : pressure,
+   var3 : pressure,
+   calib_par_p1 : unitless, 
+   calib_par_p2 : unitless, 
+   calib_par_p3 : unitless, 
+   calib_par_p4 : pressure, 
+   calib_par_p5 : pressure, 
+   calib_par_p6 : pressure, 
+   calib_par_p7 : pressure, 
+   calib_par_p8 : unitless,
+   calib_par_p9 : perPascalSquaredDimension, 
+   calib_par_p10 : perPascalSquaredDimension,  
+   unitHavingConstant1 : perKelvinDimension, 
+   unitHavingConstant2 : pascalPerVoltDimension, 
+   unitHavingConstant3 : pressure,
+   calc_pres : pressure
+				) =
+{
+    #
+	#	This is the original expression implied by the Bosch code:
+	#
+	# 	var1 ~ calib_t_fine – 64000.0;	
+	#
+	#	This is the required expression to make it dimensionally-consistent
+	#	(we can ignore the additional implicit constant needed to make '64000'
+	#	into unitless)
+	#
+    var1 ~ calib_t_fine * unitHavingConstant1,
+    var2 ~ var1 * var1 * calib_par_p6,
+    var2 ~ var2 + var1 * calib_par_p5,
+    var2 ~ var2 + calib_par_p4,
+    var1 ~ calib_par_p3 * var1 * var1 + calib_par_p2 * var1,   
+    var1 ~ (1.0 + var1) * calib_par_p1,
+    #
+	#	This is the original expression implied by the Bosch code:
+	#
+	# 	calc_pres ~ 1048576.0 - pres_adc;	
+	#
+	#	This is the required expression to make it dimensionally-consistent
+	#	(we can ignore the additional implicit constant needed to make '1048576'
+	#	into a pressure)
+	#
+    calc_pres ~ pres_adc * unitHavingConstant2,
+    #
+	#	This is the original expression implied by the Bosch code:
+	#
+	# 	calc_pres ~ calc_pres + var1 + var2 + var3 + calib_par_p7;	
+	#
+	#	This is the required expression to make it dimensionally-consistent
+	#
+    calc_pres ~ (calc_pres - var2) / var1,
+    var1 ~ calib_par_p9 * calc_pres * calc_pres,
+    var2 ~ calc_pres * calib_par_p8,		
+    var3 ~ calc_pres * calc_pres * calc_pres * calib_par_p10,
+    calc_pres ~ calc_pres + var1 * unitHavingConstant3 + var2 + var3 + calib_par_p7
+}
