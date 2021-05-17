@@ -3,7 +3,7 @@
 ### Wednesday - October 14th, 2020 - Rae + Phillip
 In terms of next steps, Rae will need to:
 * Complete Hazard Assessment Form
-*Read the 3 suggested background materials sent (2 about Dimensional Function Synthesis and 1 about Machine Learning)
+* Read the 3 suggested background materials sent (2 about Dimensional Function Synthesis and 1 about Machine Learning)
 
 ### Thursday - October 22nd, 2020 - Rae + Phillip
 In terms of next steps, Rae will need to:
