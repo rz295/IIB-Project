@@ -149,3 +149,7 @@ Asked how the MATLAB files (namely estimatePiMultinomialPhysics) work to:
 * Suggested to work on the project for a few more days and then move on for IIB Exam revision
 * Meetings resumed from May 13th
 * Final report due on June 2nd
+
+### Thursday - May 13th, 2021 - Rae 
+* Work on project dissertation from now onwards
+* Upload relevant files to this GitHub repository
