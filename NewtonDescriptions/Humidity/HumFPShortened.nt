@@ -1,0 +1,51 @@
+include "NewtonBaseSignals.nt"
+
+voltage : signal =
+{
+	name = "Volt" English;
+	symbol = V;
+	derivation = power / current;
+}
+
+perVoltDimension : signal =
+{
+	derivation = voltage**(-1);
+}
+
+perKelvinDimension : signal =
+{
+	derivation = temperature**(-1);
+}
+
+perKelvinSquaredDimension : signal =
+{
+	derivation = temperature**(-2);
+}
+
+voltPerKelvinDimension : signal =
+{
+	derivation = voltage/temperature;
+}
+
+unitless : signal =
+{
+	name		= "none" English;
+	symbol		= x;
+	derivation	= dimensionless;
+}
+
+calcHumInvariant: invariant(
+   hum_adc : voltage, 
+   calc_temp : temperature,
+   calib_par_h1 : voltage, 
+   calib_par_h2 : perVoltDimension, 
+   calib_par_h3 : voltPerKelvinDimension, 
+   calib_par_h4 : perKelvinDimension, 
+   calib_par_h5 : perKelvinSquaredDimension,
+   calib_par_h6 : unitless, 
+   calib_par_h7 : perKelvinDimension, 
+   calc_hum : unitless
+				) =
+{
+
+}
