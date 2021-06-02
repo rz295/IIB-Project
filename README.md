@@ -81,7 +81,7 @@ The predicted and true temperature readings are saved in csv format in the resul
 
 ## Newton Descriptions
 
-Parameters with units inferred from Bosch Sensortec's original conversion routines are specified in Newton descriptions in the Newton descriptions repository.
+Parameters with units inferred from Bosch Sensortec's original conversion routines are specified as Newton descriptions in the Newton descriptions repository.
 
 ## RTL Descriptions
 
