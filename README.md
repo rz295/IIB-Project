@@ -85,4 +85,4 @@ Parameters with units inferred from Bosch Sensortec's original conversion routin
 
 ## RTL Descriptions
 
-The RTL files generated from running YoSys and NextPNR tools for the selected Newton descriptions in the RTL descriptions folder. 
+The RTL files generated from running YoSys and NextPNR tools for the selected Newton descriptions are in the RTL descriptions folder. 
